@@ -1,0 +1,11 @@
+{
+  "name": "ExcelAndJS",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jeovanedossantossantos/ExcelAndJS.git",
+  "author": "Jeovane dos Santos Santos <jeovane.ssantos@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.24.0"
+  }
+}
