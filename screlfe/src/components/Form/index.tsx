@@ -1,45 +1,114 @@
-import { InputBaseProps } from "@material-ui/core";
-import React, { CSSProperties, useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
+import React, { FormEvent, useCallback, useState } from "react";
+import api from "../../server/api"
 
-export interface InputRefProps {
-    getInputValue: () => string;
-    setInputValue: (value: string) => void;
+
+interface IDate {
+
+    name: string;
+    dataNascimento: string;
+    certidaoNascimento?: string;
+    corRaca: string;
+    cpf: string;
+    sexo: "Não indentificado" | "Masculino" | "Feminino";
+    nis?: string;
+    endereco: string;
+    numero: string;
+    bairro: string;
+    pontoReferencia: string;
+    telefone: string;
+    cidade: string;
+    cep: string;
+    tipoSanguinio?: string;
+    restriacoAlimetar: "Não" | "Sim";
+    qualRestriacoAlimetar?: string;
+    medicamento: "Não" | "Sim";
+    qualMedicamento?: string;
+    alergiaMedicamento: "Não" | "Sim";
+    qualAlergiaMedicamento?: string;
+    denca: "Não" | "Sim";
+    qualDenca?: string;
+    deficiencai: "Não" | "Sim";
+    qualDeficiencai?: string;
+
+    obs?: string;
+
+    autoriz: "Não" | "Sim";
+
+    nomePai: string;
+    cpfPai: string;
+    rgPai: string;
+    telfonePai: string;
+    nisPai: string;
+
+    nomeMae: string;
+    cpfMae: string;
+    rgMae: string;
+    telfoneMae: string;
+    nisMae: string;
+
+    nomeResponsavel?: string;
+    cpfResponsavel?: string;
+    rgResponsavel?: string;
+    telfoneResponsavel?: string;
+    nisResponsavel?: string;
+
+    estadoCivil: string;
+
+
+
 }
 
-interface InputProps extends InputBaseProps{
-    styleContainer:CSSProperties;
-    label: String
-}
+const Form: React.FC = () => {
 
-const Input: React.ForwardRefRenderFunction<InputRefProps, InputProps> = ({ styleContainer, label}, ref) => {
-    const inputRef = useRef<HTMLDivElement>(null)
-    const [hoverError, setHoverError] = useState<boolean>(false)
+    const [date, setDate] = useState<IDate>({} as IDate)
+    const hadleSumbmit = useCallback((e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
 
-    useEffect(() => {
-        document.getElementsByClassName(label)[0].getElementsByTagName("input")[0].setAttribute("style", "line-height:120px");
-    }, [])
 
-    const getInputValue = useCallback(() => {
-        return inputRef.current?.getElementsByTagName('input')[0].value ? inputRef.current?.getElementsByTagName('input')[0].value : ""
-    }, [inputRef])
+        api.post('users', date).then(
 
-    const setInputValue = useCallback((newValue) => {
-        document.getElementsByClassName(label)[0].getElementsByTagName("input")[0].value = newValue
-    }, [])
 
-    useImperativeHandle(ref, () => {
-        return {
-            getInputValue,
-            setInputValue
-        };
-    });
 
-    const focusInput = useCallback(() => {
-        inputRef.current?.getElementsByTagName('input')[0].focus()
-    }, [])
+        ).catch((err) => {
+            {
+                console.log("ddd")
+            }
+        })
+
+    }, [date])
 
     return (
-       <div></div>
+        <div>
+            <div className="card">
+                <h5>Cadastres</h5>
+                <form onSubmit={hadleSumbmit}>
+
+                    <input
+                        type="text"
+                        placeholder="Infomer seu nome"
+                        onChange={e => setDate({ ...data, name: e.target.value })}
+                    />
+
+
+                    <input
+                        type="email"
+                        placeholder="Informe seus email"
+                        onChange={e => setDate({ ...data, email: e.target.value })}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Infomer seu Senha"
+                        onChange={e => setDate({ ...data, senha: e.target.value })}
+                    />
+
+
+                    <button type="submit" value="Cadastra">Cadastra</button>
+                </form>
+                <Link to={"/signin"}>Logar</Link>
+            </div>
+        </div>
     )
+
 }
 
+export default Form;
