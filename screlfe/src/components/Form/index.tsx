@@ -65,9 +65,14 @@ const Form: React.FC = () => {
         e.preventDefault()
 
 
-        api.post('users', date).then(
+        // api.post("/", {
+        //     "data": {"nome": "jeovane", "idade": 25}
+        // }).then(
+        api.get("/",).then(response =>{
+            console.log(response.data)
 
-
+        }
+            
 
         ).catch((err) => {
             {
@@ -79,32 +84,35 @@ const Form: React.FC = () => {
 
     return (
         <div>
+
+            formulario
+            
             <div className="card">
                 <h5>Cadastres</h5>
                 <form onSubmit={hadleSumbmit}>
 
-                    <input
+                    {/* <input
                         type="text"
                         placeholder="Infomer seu nome"
                         onChange={e => setDate({ ...data, name: e.target.value })}
-                    />
+                    /> */}
 
 
-                    <input
+                    {/* <input
                         type="email"
                         placeholder="Informe seus email"
                         onChange={e => setDate({ ...data, email: e.target.value })}
-                    />
-                    <input
+                    /> */}
+                    {/* <input
                         type="password"
                         placeholder="Infomer seu Senha"
                         onChange={e => setDate({ ...data, senha: e.target.value })}
-                    />
+                    /> */}
 
 
                     <button type="submit" value="Cadastra">Cadastra</button>
                 </form>
-                <Link to={"/signin"}>Logar</Link>
+                {/* <Link to={"/signin"}>Logar</Link> */}
             </div>
         </div>
     )

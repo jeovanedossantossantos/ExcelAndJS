@@ -1,0 +1,24 @@
+Idei
+
+1° um menu como três botões, Home, Cadastra e Matriculados
+
+	-Na Home não precisa muita coisa pois só a ong vai ter acesso
+	-No cadastro explicação no item 2°
+	-No Matriculados explicação no item 3°
+
+2° Fazer um design do formulario em apenas uma pagina, com dois botões o de cadastra e de cancelar.
+	-Em alguns campos do formulario vão abri se for marcado a opção sim
+
+3° Matriculados, deve ser uma lista 
+
+	Exemplo:
+
+	Data de matricula | Nome	| Responsavel	   | Ações
+
+	20/10/2020	  | Joser Silva	| Maria das Dores  | Ver | Deletar
+
+	Clicando em ver apre o formulario com todos os dados do Matriculado 
+	Clicando em deleta apaga 
+
+	Obs: o menu deve está precente em todas as paginas 
+
